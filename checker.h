@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:53:15 by lebourre          #+#    #+#             */
-/*   Updated: 2021/03/11 16:37:43 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/03/25 14:10:19 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 
 typedef	struct	s_stack
 {
-	int		*a;
-	int		*b;
+	char	**a;
+	char	**b;
 }				t_stack;
 
+int			execute_orders(t_stack *t_stack, char **orders);
 int			get_next_line(int fd, char **lines);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:52:52 by lebourre          #+#    #+#             */
-/*   Updated: 2021/03/11 16:46:51 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/03/25 16:03:24 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,31 +46,44 @@ int		set_stack(int ac, char **av, t_stack *t_stack)
 	int i;
 
 	i = -1;
-	t_stack->a = malloc(sizeof(int) * ac);
-	t_stack->b = malloc(sizeof(int) * ac);
+	t_stack->a = malloc(sizeof(char *) * (ac + 1));
+	t_stack->b = malloc(sizeof(char *) * (ac + 1));
 	if (t_stack->a == NULL || t_stack->b == NULL)
 		return (0);
 	while (av[++i])
-		t_stack->a[i] = ft_atoi(av[i]);
+		t_stack->a[i] = ft_strdup(av[i]);
+	t_stack->a[i] = NULL;
+	i = -1;
+	while (++i <= ac)
+		t_stack->b[i] = NULL;
 	return (1);
 }
 
-int		get_orders(char **orders)
+char	**get_orders(char **orders)
 {
 	int i;
 	int ret;
 
-	i = 1;
+	i = -1;
+	orders = NULL;
 	orders = ft_realloc_double(orders);
 	while ((ret = get_next_line(0, &orders[++i])) > 0)
 		orders = ft_realloc_double(orders);
-	return (1);
+	if (ret < 0)
+	{
+		i = -1;
+		while (orders[++i])
+			free(orders[i]);
+		free(orders);
+		return (NULL);
+	}
+	return (orders);
 }
 
-void	checker(int ac, char **av)
+void	checker(int ac, char **av, t_stack *t_stack)
 {
-	t_stack		*t_stack;
 	char		**orders;
+	int			i;
 
 	if (!check_args(av))
 	{
@@ -78,14 +91,37 @@ void	checker(int ac, char **av)
 		return ;
 	}
 	set_stack(ac, av, t_stack);
-	get_orders(orders);
+	orders = get_orders(orders);
+	i = -1;
+	while (orders[++i])
+		ft_putstr_fd(orders[i], 1);
+	if (!(execute_orders(t_stack, orders)))
+		return ;
+	i = 0;
+	while (orders[i + 1])
+	{
+		if (ft_atoi(orders[i]) > ft_atoi(orders[i + 1]))
+		{
+			ft_printf("KO\n");
+			return ;
+		}
+		i++;
+	}
+	ft_printf("OK\n");
 }
 
 int		main(int ac, char **av)
 {
+	t_stack *t_stack;
+
 	if (ac < 2)
+	{
 		ft_printf("Error\n");
-	else if (ac > 2)
-		checker(ac - 1, av + 1);
+		return (0);
+	}
+	t_stack = malloc(sizeof(t_stack));
+	if (t_stack == NULL)
+		return (0);
+	checker(ac - 1, av + 1, t_stack);
 	return (0);
 }

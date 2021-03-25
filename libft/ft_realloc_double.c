@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 10:41:01 by lebourre          #+#    #+#             */
-/*   Updated: 2021/02/03 10:41:22 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/03/25 15:53:22 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	**ft_realloc_double(char **str)
 		new[i] = ft_strdup(str[i]);
 		free(str[i]);
 	}
+	new[i] = NULL;
 	new[i + 1] = NULL;
 	free(str);
 	return (new);

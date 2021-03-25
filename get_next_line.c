@@ -6,11 +6,11 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 18:21:42 by lebourre          #+#    #+#             */
-/*   Updated: 2021/02/19 10:28:15 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/03/25 14:16:28 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "checker.h"
 
 char	*ft_strncpy(char *s, int n)
 {
