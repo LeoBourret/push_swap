@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:52:52 by lebourre          #+#    #+#             */
-/*   Updated: 2021/03/25 17:21:13 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/03/29 14:48:57 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		check_args(char **av)
 		while (++index < i)
 		{
 			ptr = av[index];
-			if ((ft_strncmp(ptr, av[i], ft_strlen(ptr))) == 0)
+			if (ft_atoi(ptr) == ft_atoi(av[i]))
 				return (0);
 		}
 	}
@@ -92,12 +92,13 @@ void	checker(int ac, char **av, t_stack *t_stack)
 		return ;
 	}
 	set_stack(ac, av, t_stack);
+	print_stack(t_stack->a, NULL);
 	orders = get_orders(orders);
 	if (!(execute_orders(t_stack, orders)))
 		return ;
 	i = -1;
 	i = 0;
-	while (orders[i + 1])
+	while (t_stack->a[i + 1])
 	{
 		if (ft_atoi(t_stack->a[i]) > ft_atoi(t_stack->a[i + 1]))
 		{
