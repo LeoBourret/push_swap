@@ -29,7 +29,7 @@ void	print_stack(char **stack1, char **stack2)
 	ft_printf("\n");
 }
 
-void	swap(char **stack)
+void	swap(char **stack, int c)
 {
 	char *swap;
 
@@ -38,17 +38,18 @@ void	swap(char **stack)
 	swap = stack[0];
 	stack[0] = stack[1];
 	stack[1] = swap;
+	if (c == 0)
+		ft_printf("sa\n");
+	else
+		ft_printf("sb\n");
 }
 
-void	push(char **stack_dest, char **stack_src)
+void	push(char **stack_dest, char **stack_src, int c)
 {
 	int		i;
 
 	i = 0;
-	if (!*stack_src)
-		return ;
-	while (stack_dest[i])
-		i++;
+	i = stack_len(stack_dest);
 	while (i > 0)
 	{
 		free(stack_dest[i]);
@@ -65,9 +66,13 @@ void	push(char **stack_dest, char **stack_src)
 	}
 	free(stack_src[i]);
 	stack_src[i] = NULL;
+	if (c == 0)
+		ft_printf("pa\n");
+	else
+		ft_printf("pb\n");
 }
 
-void	rotate(char **stack)
+void	rotate(char **stack, int c)
 {
 	int		i;
 	char	*tmp;
@@ -89,9 +94,13 @@ void	rotate(char **stack)
 	}
 	free(stack[i]);
 	stack[i] = tmp;
+	if (c == 0)
+		ft_printf("ra\n");
+	else
+		ft_printf("rb\n");
 }
 
-void	reverse_rotate(char **stack)
+void	reverse_rotate(char **stack, int c)
 {
 	int		i;
 	char	*tmp;
@@ -112,6 +121,10 @@ void	reverse_rotate(char **stack)
 	}
 	free(stack[i]);
 	stack[i] = tmp;
+	if (c == 0)
+		ft_printf("rra\n");
+	else
+		ft_printf("rrb\n");
 }
 
 int		execute_orders(t_stack *t_stack, char **orders)
