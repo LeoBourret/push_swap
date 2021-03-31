@@ -52,9 +52,11 @@ void	checker(int ac, char **av, t_stack *t_stack)
 	set_stack(ac, av, t_stack);
 	print_stack(t_stack->a, t_stack->b);
 	if (ac == 3)
-		solve_three(t_stack->a);
+		solve_three(t_stack->a, 0);
 	else if (ac >= 4 && ac <= 5)
 		solve_four_five(t_stack);
+	else if (ac == 10)
+		solve_ten(t_stack);
 }
 
 int		main(int ac, char **av)

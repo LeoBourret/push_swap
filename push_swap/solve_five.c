@@ -18,11 +18,8 @@ void	push_stack_b_back_to_stack_a(t_stack *t_stack, int max, int min)
 		}
 		else if (ft_atoi(t_stack->b[0]) < min
 		&& min == ft_atoi(t_stack->a[0]))
-			push(t_stack->a, t_stack->b, 1);
+			push(t_stack->a, t_stack->b, 0);
 		else if (ft_atoi(t_stack->b[0]) > ft_atoi(t_stack->a[0]))
-			rotate(t_stack->a, 0);
-		else if (ft_atoi(t_stack->b[0]) < ft_atoi(t_stack->a[0])
-		&& ft_atoi(t_stack->b[0]) < ft_atoi(t_stack->a[i]))
 			rotate(t_stack->a, 0);
 		else
 			push(t_stack->a, t_stack->b, 0);
@@ -34,9 +31,7 @@ int		solve_four_five(t_stack *t_stack)
 	int i;
 	int stack_size;
 
-	stack_size = 0;
-	while (t_stack->a[stack_size])
-		stack_size++;
+	stack_size = stack_len(t_stack->a);
 	i = stack_size;
 	while (i != 3)
 	{
@@ -45,12 +40,12 @@ int		solve_four_five(t_stack *t_stack)
 	}
 	if (ft_atoi(t_stack->b[0]) > ft_atoi(t_stack->b[1]))
 		swap(t_stack->b, 1);
-	solve_three(t_stack->a);
+	solve_three(t_stack->a, 0);
 	push_stack_b_back_to_stack_a(t_stack, 0, 0);
 	if (is_sorted(t_stack->a))
 		return (1);
 	i = -1;
-	while(ft_atoi(t_stack->a[++i]))
+	while(t_stack->a[++i])
 	{
 		if (ft_atoi(t_stack->a[i]) > ft_atoi(t_stack->a[i + 1]))
 		{
