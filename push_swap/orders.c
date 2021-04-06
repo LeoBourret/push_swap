@@ -12,7 +12,7 @@ void	print_stack(char **stack1, char **stack2)
 			else
 				ft_printf("%s", *(stack1++));
 		}
-	ft_printf("| ");
+	ft_printf("|\n");
 	}
 	if (stack2 && *stack2)
 	{
