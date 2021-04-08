@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int		*get_chunck(int *tab, int size, char **stack)
+int		*get_chunck(int *tab, int *size, char **stack)
 {
 	int min;
 	int max;
@@ -9,20 +9,22 @@ int		*get_chunck(int *tab, int size, char **stack)
 
 	min = find_min(stack);
 	max = find_max(stack);
-	tab = malloc(sizeof(int) * size);
+	if (*size > stack_len(stack))
+		*size = stack_len(stack);
+	tab = malloc(sizeof(int) * *size);
 	if (!tab)
 		return (0);
 	i = -1;
-	while (++i < size)
+	while (++i < *size)
 		tab[i] = min;
 	i = 0;
-	while (++i < size)
+	while (++i < *size)
 	{
-		j = -1;
 		min = max;
+		j = -1;
 		while (stack[++j])
 			if (min > ft_atoi(stack[j])
-			&& !is_in_tab(tab, ft_atoi(stack[j]), size))
+			&& !is_in_tab(tab, ft_atoi(stack[j]), *size))
 				min = ft_atoi(stack[j]);
 		tab[i] = min;
 	}
@@ -55,7 +57,7 @@ void	push_back(t_stack *t_stack)
 		push(t_stack->a, t_stack->b, 0);
 }
 
-void	solve_hundred(t_stack *t_stack)
+void	solve_hundred(t_stack *t_stack, int size_chunck)
 {
 	int *chunck;
 	int i;
@@ -68,15 +70,15 @@ void	solve_hundred(t_stack *t_stack)
 		print_stack(t_stack->a, t_stack->b);
 		return ;
 	}
-	chunck = get_chunck(chunck, 20, t_stack->a);
+	chunck = get_chunck(chunck, &size_chunck, t_stack->a);
 	index = -1;
-	while (++index < 20)
+	while (++index < size_chunck)
 	{
 		i = 0;
 		j = stack_len(t_stack->a) - 1;
-		while (!is_in_tab(chunck, ft_atoi(t_stack->a[i]), 20))
+		while (!is_in_tab(chunck, ft_atoi(t_stack->a[i]), size_chunck))
 			i++;
-		while (!is_in_tab(chunck, ft_atoi(t_stack->a[j]), 20))
+		while (!is_in_tab(chunck, ft_atoi(t_stack->a[j]), size_chunck))
 			j--;
 		j = (j - stack_len(t_stack->a)) * -1;
 		set_closest_top_min_on_top(t_stack->a, i, j);
@@ -86,5 +88,5 @@ void	solve_hundred(t_stack *t_stack)
 			push_a_elem_to_b_reverse_sort(t_stack, 0, 0);
 	}
 	free(chunck);
-	solve_hundred(t_stack);
+	solve_hundred(t_stack, size_chunck);
 }

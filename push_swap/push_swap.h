@@ -9,12 +9,13 @@ typedef	struct	s_stack
 	char	**b;
 }				t_stack;
 
+int			ft_ispace(char c);
 int			execute_orders(t_stack *t_stack, char **orders);
 int			solve_three(char **stack, int c);
 void		solve_three_reverse(char **stack, int c);
 int			solve_four_five(t_stack *t_stack);
 int			solve_ten(t_stack *t_stack);
-void		solve_hundred(t_stack *t_stack);
+void		solve_hundred(t_stack *t_stack, int size_chunck);
 int			is_sorted(char **stack);
 int			is_sorted_reverse(char **stack);
 int			find_min(char **stack);
