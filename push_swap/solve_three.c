@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solve_three.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/09 16:51:32 by lebourre          #+#    #+#             */
+/*   Updated: 2021/04/09 16:51:45 by lebourre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void		solve_three_reverse_2(char **stack, int c)
+void	solve_three_reverse_2(char **stack, int c)
 {
 	if (ft_atoi(stack[0]) > ft_atoi(stack[1])
 	&& ft_atoi(stack[1]) < ft_atoi(stack[2])

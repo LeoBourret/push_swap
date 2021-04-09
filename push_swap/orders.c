@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   orders.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/09 16:41:33 by lebourre          #+#    #+#             */
+/*   Updated: 2021/04/09 16:41:36 by lebourre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	print_stack(char **stack1, char **stack2)
@@ -12,7 +24,7 @@ void	print_stack(char **stack1, char **stack2)
 			else
 				ft_printf("%s", *(stack1++));
 		}
-	ft_printf("|\n");
+		ft_printf("|\n");
 	}
 	if (stack2 && *stack2)
 	{

@@ -6,17 +6,16 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:19:53 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/09 16:24:34 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/09 17:00:47 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		*get_chunck(int *tab, int *size, char **stack)
+int		*get_chunck(int *tab, int *size, char **stack, int i)
 {
 	int min;
 	int max;
-	int i;
 	int j;
 
 	min = find_min(stack);
@@ -26,7 +25,6 @@ int		*get_chunck(int *tab, int *size, char **stack)
 	tab = malloc(sizeof(int) * *size);
 	if (!tab)
 		return (0);
-	i = -1;
 	while (++i < *size)
 		tab[i] = min;
 	i = 0;
@@ -43,62 +41,58 @@ int		*get_chunck(int *tab, int *size, char **stack)
 	return (tab);
 }
 
-void	push_back(t_stack *t_stack)
+int		push_back(t_stack *stack)
 {
 	int i;
 
-	if (!is_sorted_reverse(t_stack->b))
+	if (!is_sorted_reverse(stack->b))
 	{
 		i = -1;
-		while (t_stack->b[++i])
-			if (ft_atoi(t_stack->b[i]) < ft_atoi(t_stack->b[i + 1]))
+		while (stack->b[++i])
+			if (ft_atoi(stack->b[i]) < ft_atoi(stack->b[i + 1]))
 			{
 				i++;
 				break ;
 			}
-		if (i > (stack_len(t_stack->b) / 2))
+		if (i > (stack_len(stack->b) / 2))
 		{
-			while (!is_sorted_reverse(t_stack->b))
-				reverse_rotate(t_stack->b, 1);
+			while (!is_sorted_reverse(stack->b))
+				reverse_rotate(stack->b, 1);
 		}
 		else
-			while (!is_sorted_reverse(t_stack->b))
-				rotate(t_stack->b, 1);
+			while (!is_sorted_reverse(stack->b))
+				rotate(stack->b, 1);
 	}
-	while (stack_len(t_stack->b))
-		push(t_stack->a, t_stack->b, 0);
+	while (stack_len(stack->b))
+		push(stack->a, stack->b, 0);
+	return (1);
 }
 
-void	solve_hundred(t_stack *t_stack, int size_chunck)
+void	solve_hundred(t_stack *stack, int size_chunck, int *chunck)
 {
-	int *chunck;
 	int i;
 	int j;
 	int index;
 
-	chunck = 0;
-	if (stack_len(t_stack->a) == 0)
-	{
-		push_back(t_stack);
+	if (stack_len(stack->a) == 0 && push_back(stack))
 		return ;
-	}
-	chunck = get_chunck(chunck, &size_chunck, t_stack->a);
+	chunck = get_chunck(chunck, &size_chunck, stack->a, -1);
 	index = -1;
 	while (++index < size_chunck)
 	{
 		i = 0;
-		j = stack_len(t_stack->a) - 1;
-		while (!is_in_tab(chunck, ft_atoi(t_stack->a[i]), size_chunck))
+		j = stack_len(stack->a) - 1;
+		while (!is_in_tab(chunck, ft_atoi(stack->a[i]), size_chunck))
 			i++;
-		while (!is_in_tab(chunck, ft_atoi(t_stack->a[j]), size_chunck))
+		while (!is_in_tab(chunck, ft_atoi(stack->a[j]), size_chunck))
 			j--;
-		j = (j - stack_len(t_stack->a)) * -1;
-		set_closest_top_min_on_top(t_stack->a, i, j);
-		if (stack_len(t_stack->b) == 0 || stack_len(t_stack->b) == 1)
-			push(t_stack->b, t_stack->a, 1);
+		j = (j - stack_len(stack->a)) * -1;
+		set_closest_top_min_on_top(stack->a, i, j);
+		if (stack_len(stack->b) == 0 || stack_len(stack->b) == 1)
+			push(stack->b, stack->a, 1);
 		else
-			push_a_elem_to_b_reverse_sort(t_stack, 0, 0);
+			push_a_elem_to_b_reverse_sort(stack, 0, 0);
 	}
 	free(chunck);
-	solve_hundred(t_stack, size_chunck);
+	solve_hundred(stack, size_chunck, 0);
 }
