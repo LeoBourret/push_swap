@@ -22,6 +22,8 @@ int			find_min(char **stack);
 int			find_max(char **stack);
 int			stack_len(char **stack);
 int			is_in_tab(int *tab, int value, int size);
+int			skip_space(char *s);
+int			skip_digit(char *s);
 int			insertion_place_reverse(char **stack, int value);
 void		set_closest_top_min_on_top(char **stack, int front, int back);
 void		push_correct_order(t_stack *t_stack, int max, int min, int size);

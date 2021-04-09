@@ -157,7 +157,6 @@ int		solve_ten(t_stack *t_stack)
 		set_closest_top_min_on_top(t_stack->a, i, j);
 		push(t_stack->b, t_stack->a, 1);
 	}
-	print_stack(t_stack->a, t_stack->b);
 	solve_three_reverse(t_stack->b, 1);
 	while (stack_len(t_stack->a) != 5)
 	{

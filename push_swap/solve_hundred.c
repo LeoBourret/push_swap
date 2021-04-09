@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solve_hundred.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/09 16:19:53 by lebourre          #+#    #+#             */
+/*   Updated: 2021/04/09 16:24:34 by lebourre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int		*get_chunck(int *tab, int *size, char **stack)
@@ -64,10 +76,10 @@ void	solve_hundred(t_stack *t_stack, int size_chunck)
 	int j;
 	int index;
 
+	chunck = 0;
 	if (stack_len(t_stack->a) == 0)
 	{
 		push_back(t_stack);
-		print_stack(t_stack->a, t_stack->b);
 		return ;
 	}
 	chunck = get_chunck(chunck, &size_chunck, t_stack->a);
