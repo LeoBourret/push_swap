@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/03 10:42:24 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/12 17:40:49 by lebourre         ###   ########.fr       */
+/*   Created: 2021/04/12 17:21:56 by lebourre          #+#    #+#             */
+/*   Updated: 2021/04/12 17:24:41 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-char	*ft_realloc(char *str, int buffer_size)
+void	free_stack(t_stack *stack)
 {
-	char	*new;
-	int		i;
+	int i;
 
-	if (!str)
-	{
-		if (!(new = malloc(sizeof(char) * (buffer_size + 1))))
-			return (NULL);
-		return (new);
-	}
-	if (!(new = malloc(sizeof(char *) * (ft_strlen(str) + buffer_size + 1))))
-		return (NULL);
 	i = -1;
-	while (str[++i])
-		new[i] = str[i];
-	new[i] = '\0';
-	new[i + 1] = '\0';
-	free(str);
-	str = NULL;
-	return (new);
+	if (stack->a)
+	{
+		while (stack->a[++i])
+			free(stack->a[i]);
+		free(stack->a);
+	}
+	i = -1;
+	if (stack->b)
+	{
+		while (stack->b[++i])
+			free(stack->b[i]);
+		free(stack->b);
+	}
+	free(stack);
 }

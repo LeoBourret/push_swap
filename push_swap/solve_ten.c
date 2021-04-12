@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:38:25 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/09 17:08:01 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/12 17:12:35 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	next_else_reverse(t_stack *stack)
 	int index;
 
 	if ((index = insertion_place_reverse
-(stack->b, ft_atoi(stack->a[0])))
+	(stack->b, ft_atoi(stack->a[0])))
 			>= stack_len(stack->b) / 2)
 	{
 		while (stack->b[index + 1])
@@ -43,7 +43,6 @@ void	push_a_elem_to_b_reverse_sort(t_stack *stack, int max, int min)
 {
 	int i;
 	int len;
-	int index;
 
 	len = stack_len(stack->a);
 	while (stack_len(stack->a) == len)
@@ -58,6 +57,8 @@ void	push_a_elem_to_b_reverse_sort(t_stack *stack, int max, int min)
 			push(stack->b, stack->a, 1);
 			rotate(stack->b, 1);
 		}
+		else
+			next_else_reverse(stack);
 	}
 }
 
@@ -109,75 +110,26 @@ void	set_value_to_top(char **stack, int index, int c, int odd)
 
 int		solve_ten(t_stack *stack)
 {
-	int		five_min_tab[5];
+	int		*five_min_tab;
 	int		i;
-	int		min;
-	int		j;
 	int		index;
 
-	i = -1;
-	min = find_min(stack->a);
-	index = find_max(stack->a);
-	while (++i < 4)
-		five_min_tab[i] = min;
+	if (is_sorted(stack->a))
+		return (1);
+	index = 5;
+	five_min_tab = 0;
+	five_min_tab = get_chunck(five_min_tab, &index, stack->a, -1);
 	i = 0;
-	while (++i < 5)
-	{
-		j = -1;
-		min = index;
-		while (stack->a[++j])
-		{
-			if (min > ft_atoi(stack->a[j])
-			&& !is_in_tab(five_min_tab, ft_atoi(stack->a[j]), 5))
-				min = ft_atoi(stack->a[j]);
-		}
-		five_min_tab[i] = min;
-	}
 	index = -1;
-	while (++index < 3)
-	{
-		i = 0;
-		j = stack_len(stack->a) - 1;
-		while (!is_in_tab(five_min_tab, ft_atoi(stack->a[i]), 5))
-			i++;
-		while (!is_in_tab(five_min_tab, ft_atoi(stack->a[j]), 5))
-			j--;
-		j = (j - stack_len(stack->a)) * -1;
-		set_closest_top_min_on_top(stack->a, i, j);
-		push(stack->b, stack->a, 1);
-	}
+	push_closest_min(stack, 3, five_min_tab);
 	solve_three_reverse(stack->b, 1);
-	while (stack_len(stack->a) != 5)
-	{
-		min = find_min(stack->a);
-		i = 0;
-		while (ft_atoi(stack->a[i]) != min)
-			i++;
-		set_value_to_top(stack->a, i, 0, stack_len(stack->a) % 2);
-		push_a_elem_to_b_reverse_sort(stack, 0, 0);
-
-	}
-	if (!is_sorted_reverse(stack->b))
-	{
-		i = -1;
-		while (stack->b[++i])
-			if (ft_atoi(stack->b[i]) < ft_atoi(stack->b[i + 1]))
-			{
-				i++;
-				break ;
-			}
-		if (i > (stack_len(stack->b) / 2))
-		{
-			while (!is_sorted_reverse(stack->b))
-				reverse_rotate(stack->b, 1);
-		}
-		else
-			while (!is_sorted_reverse(stack->b))
-				rotate(stack->b, 1);
-	}
+	push_min(stack, 2);
+	fix_stack(stack->b);
 	if (stack_len(stack->a) > 3)
-	solve_four_five(stack);
+		solve_four_five(stack);
 	while (stack->b[0])
 		push(stack->a, stack->b, 0);
+	free(five_min_tab);
+	print_stack(stack->a, stack->b);
 	return (1);
 }

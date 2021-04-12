@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:26:13 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/09 16:51:13 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/12 16:36:24 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,22 @@ void	next_else(t_stack *stack)
 {
 	int index;
 
+	index = 0;
 	if ((index = insertion_place(stack->a, ft_atoi(stack->b[0])))
-			>= stack_len(stack->a) / 2)
+	>= stack_len(stack->a) / 2)
 	{
 		while (stack->a[index + 1] && index++)
 			reverse_rotate(stack->a, 0);
 		push(stack->a, stack->b, 0);
 	}
 	else if ((index = insertion_place(stack->a, ft_atoi(stack->b[0])))
-			< stack_len(stack->a) / 2)
+	< stack_len(stack->a) / 2)
 	{
-		while (index >= 0 && index--)
+		while (index >= 0)
+		{
 			rotate(stack->a, 0);
+			index--;
+		}
 		push(stack->a, stack->b, 0);
 	}
 }
@@ -76,6 +80,8 @@ int		solve_four_five(t_stack *stack)
 	int i;
 	int stack_size;
 
+	if (is_sorted(stack->a))
+		return (1);
 	stack_size = stack_len(stack->a);
 	i = stack_size;
 	while (i != 3 && i--)
@@ -88,7 +94,7 @@ int		solve_four_five(t_stack *stack)
 		return (1);
 	i = -1;
 	while (stack->a[++i])
-		if (ft_atoi(stack->a[i]) > ft_atoi(stack->a[i + 1]) && i++)
+		if (ft_atoi(stack->a[i]) > ft_atoi(stack->a[i + 1]))
 			break ;
 	if (i > (stack_size / 2))
 		while (!is_sorted(stack->a))
