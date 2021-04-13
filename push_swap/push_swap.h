@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:43:00 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/12 17:51:12 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/13 14:46:47 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int				execute_orders(t_stack *stack, char **orders);
 void			set_value_to_top(char **stack, int index, int c, int odd);
 int				solve_three(char **stack, int c);
 void			solve_three_reverse(char **stack, int c);
-int				solve_four_five(t_stack *stack);
+int				solve_four_five(t_stack *stack, int stack_size);
 int				solve_ten(t_stack *stack);
 void			solve_hundred(t_stack *stack, int size_chunck, int *chunck);
 int				is_sorted(char **stack);

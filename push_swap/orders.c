@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:41:33 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/12 18:21:12 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/13 17:47:55 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	push(char **stack_dest, char **stack_src, int c)
 {
 	int		i;
 
-	i = 0;
 	i = stack_len(stack_dest);
 	while (i > 0)
 	{
@@ -105,7 +104,8 @@ void	rotate(char **stack, int c)
 		i++;
 	}
 	free(stack[i]);
-	stack[i] = tmp;
+	stack[i] = ft_strdup(tmp);
+	free(tmp);
 	if (c == 0)
 		ft_printf("ra\n");
 	else
@@ -132,7 +132,8 @@ void	reverse_rotate(char **stack, int c)
 		i--;
 	}
 	free(stack[i]);
-	stack[i] = tmp;
+	stack[i] = ft_strdup(tmp);
+	free(tmp);
 	if (c == 0)
 		ft_printf("rra\n");
 	else

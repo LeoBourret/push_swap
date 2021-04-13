@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:48:57 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/12 18:05:59 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/13 14:48:44 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*join_args(char **av)
 {
-	int i;
-	char *tmp;
-	char *new;
+	int		i;
+	char	*tmp;
+	char	*new;
 
 	i = -1;
 	tmp = malloc(sizeof(char) * (ft_strlen(av[0]) + 2));
@@ -31,15 +31,12 @@ char	*join_args(char **av)
 		new = ft_realloc(new, ft_strlen(new) + 2);
 		new[ft_strlen(new)] = ' ';
 		new[ft_strlen(new)] = '\0';
-		ft_printf("new = [%s]\n", new);
 		free(tmp);
 		tmp = ft_strdup(new);
 		free(new);
-		ft_printf("tmp = [%s]\n", tmp);
 	}
 	new = ft_strdup(tmp);
 	free(tmp);
-//	ft_printf("new = [%s]\n", new);
 	return (new);
 }
 

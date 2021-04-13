@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:38:25 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/12 17:12:35 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/13 14:51:17 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	next_else_reverse(t_stack *stack)
 	int index;
 
 	if ((index = insertion_place_reverse
-	(stack->b, ft_atoi(stack->a[0])))
+(stack->b, ft_atoi(stack->a[0])))
 			>= stack_len(stack->b) / 2)
 	{
 		while (stack->b[index + 1])
@@ -126,7 +126,7 @@ int		solve_ten(t_stack *stack)
 	push_min(stack, 2);
 	fix_stack(stack->b);
 	if (stack_len(stack->a) > 3)
-		solve_four_five(stack);
+		solve_four_five(stack, stack_len(stack->a));
 	while (stack->b[0])
 		push(stack->a, stack->b, 0);
 	free(five_min_tab);

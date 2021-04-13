@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:26:13 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/12 16:36:24 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/13 14:47:03 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,12 @@ void	push_a_correct_order(t_stack *stack, int max, int min, int size)
 	}
 }
 
-int		solve_four_five(t_stack *stack)
+int		solve_four_five(t_stack *stack, int stack_size)
 {
 	int i;
-	int stack_size;
 
 	if (is_sorted(stack->a))
 		return (1);
-	stack_size = stack_len(stack->a);
 	i = stack_size;
 	while (i != 3 && i--)
 		push(stack->b, stack->a, 1);
