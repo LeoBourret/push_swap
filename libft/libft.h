@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 15:04:01 by lebourre          #+#    #+#             */
-/*   Updated: 2021/03/11 16:18:01 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/20 16:56:46 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strnstr(char const *s1, char const *s2, size_t len);
+int				ft_strcmp(char const *s1, char const *s2);
 int				ft_strncmp(char const *s1, char const *s2, size_t n);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			**ft_split(char const *s, char c);

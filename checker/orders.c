@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 17:11:09 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/19 17:11:29 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/20 16:33:48 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@ void	print_stack(char **stack1, char **stack2)
 {
 	if (stack1 && *stack1)
 	{
-		ft_printf("stack A =\n");
+		ft_printf("stack A = ");
 		while (*stack1)
 			ft_printf("%s ", *(stack1++));
 		ft_printf("\n");
 	}
 	if (stack2 && *stack2)
 	{
-		ft_printf("stack B =\n");
+		ft_printf("stack B = ");
 		while (*stack2)
 			ft_printf("%s ", *(stack2++));
 		ft_printf("\n");
 	}
+	ft_printf("\n");
 }
 
 void	swap(char **stack)
