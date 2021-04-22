@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:38:25 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/13 14:51:17 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/22 15:39:06 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ void	set_value_to_top(char **stack, int index, int c, int odd)
 int		solve_ten(t_stack *stack)
 {
 	int		*five_min_tab;
-	int		i;
 	int		index;
 
 	if (is_sorted(stack->a))
@@ -119,14 +118,17 @@ int		solve_ten(t_stack *stack)
 	index = 5;
 	five_min_tab = 0;
 	five_min_tab = get_chunck(five_min_tab, &index, stack->a, -1);
-	i = 0;
-	index = -1;
 	push_closest_min(stack, 3, five_min_tab);
 	solve_three_reverse(stack->b, 1);
 	push_min(stack, 2);
 	fix_stack(stack->b);
 	if (stack_len(stack->a) > 3)
 		solve_four_five(stack, stack_len(stack->a));
+	else if (stack_len(stack->a) == 3)
+		solve_three(stack->a, 0);
+	else if (stack_len(stack->a) == 2)
+		if (ft_atoi(stack->a[0]) > ft_atoi(stack->a[1]))
+			swap(stack->a, 0);
 	while (stack->b[0])
 		push(stack->a, stack->b, 0);
 	free(five_min_tab);

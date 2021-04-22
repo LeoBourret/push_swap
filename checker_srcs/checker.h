@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:53:15 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/20 17:16:44 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/22 17:14:49 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ typedef	struct	s_stack
 	char	**a;
 	char	**b;
 }				t_stack;
+
+typedef	struct	s_options
+{
+	int		offset;
+	int		verbose;
+}				t_options;
 
 int			manage_orders(char **orders, t_stack *stack, int verbose);
 int			set_stack(char **av, t_stack *stack);
@@ -35,5 +41,8 @@ void		swap(char **stack);
 void		free_stack(t_stack *stack);
 void		free_orders(char **orders);
 char		*join_args(char **av);
+int			ft_ispace(char c);
+int			skip_space(char *s);
+int			skip_digit(char *s);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:26:13 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/13 14:47:03 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/22 17:56:06 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		insertion_place(char **stack, int value)
 	return (i);
 }
 
-void	next_else(t_stack *stack)
+void	next_else(t_stack *stack, t_options *options)
 {
 	int index;
 
@@ -38,24 +38,26 @@ void	next_else(t_stack *stack)
 	>= stack_len(stack->a) / 2)
 	{
 		while (stack->a[index + 1] && index++)
-			reverse_rotate(stack->a, 0);
-		push(stack->a, stack->b, 0);
+			reverse_rotate(stack->a, 0, stack, options);
+		push(stack->a, stack->b, 0, options);
 	}
 	else if ((index = insertion_place(stack->a, ft_atoi(stack->b[0])))
 	< stack_len(stack->a) / 2)
 	{
 		while (index >= 0)
 		{
-			rotate(stack->a, 0);
+			rotate(stack->a, 0, stack, options);
 			index--;
 		}
-		push(stack->a, stack->b, 0);
+		push(stack->a, stack->b, 0, options);
 	}
 }
 
-void	push_a_correct_order(t_stack *stack, int max, int min, int size)
+void	push_a_correct_order(t_stack *stack, int size, t_options *options)
 {
 	int i;
+	int max;
+	int min;
 
 	i = 0;
 	while (stack_len(stack->a) != size)
@@ -65,17 +67,17 @@ void	push_a_correct_order(t_stack *stack, int max, int min, int size)
 		i = stack_len(stack->a) - 1;
 		if (ft_atoi(stack->b[0]) > max && ft_atoi(stack->a[i]) == max)
 		{
-			push(stack->a, stack->b, 0);
-			rotate(stack->a, 0);
+			push(stack->a, stack->b, 0, options);
+			rotate(stack->a, 0, stack, options);
 		}
 		else if (ft_atoi(stack->b[0]) < min && min == ft_atoi(stack->a[0]))
-			push(stack->a, stack->b, 0);
+			push(stack->a, stack->b, 0, options);
 		else
-			next_else(stack);
+			next_else(stack, options);
 	}
 }
 
-int		solve_four_five(t_stack *stack, int stack_size)
+int		solve_four_five(t_stack *stack, int stack_size, t_options *options)
 {
 	int i;
 
@@ -83,11 +85,11 @@ int		solve_four_five(t_stack *stack, int stack_size)
 		return (1);
 	i = stack_size;
 	while (i != 3 && i--)
-		push(stack->b, stack->a, 1);
-	if (ft_atoi(stack->b[0]) > ft_atoi(stack->b[1]))
-		swap(stack->b, 1);
+		push(stack->b, stack->a, 1, options);
+	if (stack_len(stack->b) == 2 && ft_atoi(stack->b[0]) > ft_atoi(stack->b[1]))
+		swap(stack->b, 1, stack, options);
 	solve_three(stack->a, 0);
-	push_a_correct_order(stack, 0, 0, stack_size);
+	push_a_correct_order(stack, stack_size, options);
 	if (is_sorted(stack->a))
 		return (1);
 	i = -1;
@@ -96,9 +98,9 @@ int		solve_four_five(t_stack *stack, int stack_size)
 			break ;
 	if (i > (stack_size / 2))
 		while (!is_sorted(stack->a))
-			reverse_rotate(stack->a, 0);
+			reverse_rotate(stack->a, 0, stack, options);
 	else
 		while (!is_sorted(stack->a))
-			rotate(stack->a, 0);
+			rotate(stack->a, 0, stack, options);
 	return (1);
 }

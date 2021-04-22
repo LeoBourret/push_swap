@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 15:13:03 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/20 16:58:15 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/22 17:11:24 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,24 +56,21 @@ int		execute_orders_2(t_stack *stack, char *orders)
 
 int		execute_orders(t_stack *stack, char *orders, int verbose)
 {
-//	while (orders != NULL)
-//	{
-		if ((ft_strcmp(orders, "sa")) == 0)
-			swap(stack->a);
-		else if ((ft_strcmp(orders, "sb")) == 0)
-			swap(stack->b);
-		else if ((ft_strcmp(orders, "ss")) == 0)
-		{
-			swap(stack->a);
-			swap(stack->b);
-		}
-		else
-		{
-			if ((execute_orders_2(stack, orders)) == 0)
-				return (0);
-		}
-		if (verbose == 1)
-			print_stack(stack->a, stack->b);
-//	}
+	if ((ft_strcmp(orders, "sa")) == 0)
+		swap(stack->a);
+	else if ((ft_strcmp(orders, "sb")) == 0)
+		swap(stack->b);
+	else if ((ft_strcmp(orders, "ss")) == 0)
+	{
+		swap(stack->a);
+		swap(stack->b);
+	}
+	else
+	{
+		if ((execute_orders_2(stack, orders)) == 0)
+			return (0);
+	}
+	if (verbose == 1)
+		print_stack(stack->a, stack->b);
 	return (1);
 }

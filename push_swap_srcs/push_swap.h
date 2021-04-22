@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:43:00 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/13 14:46:47 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/22 17:52:41 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ typedef	struct	s_stack
 	char	**a;
 	char	**b;
 }				t_stack;
+
+typedef	struct	s_options
+{
+	int		offset;
+	int		verbose;
+}				t_options;
 
 int				ft_ispace(char c);
 char			*join_args(char **av);
@@ -49,11 +55,12 @@ int				insertion_place_reverse(char **stack, int value);
 void			set_closest_top_min_on_top(char **stack, int front, int back);
 void			push_correct_order(t_stack *stack, int max, int min, int size);
 void			push_a_elem_to_b_reverse_sort(t_stack *stack, int min, int max);
-void			swap(char **stack, int c);
-void			push(char **stack_dest, char **stack_src, int c);
-void			rotate(char **stack, int c);
-void			reverse_rotate(char **stack, int c);
+void			swap(char **stack, int c, t_stack *stc, t_options *options);
+void			push(char **dest, char **src, int c, t_options *options);
+void			rotate(char **stack, int c, t_stack *stck, t_options *options);
+void			reverse_rotate(char **s, int c, t_stack *stck, t_options *o);
 void			print_stack(char **stack1, char **stack2);
 void			free_stack(t_stack *stack);
+void			set_options(t_options *options, char **av);
 
 #endif

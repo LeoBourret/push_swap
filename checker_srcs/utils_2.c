@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:03:13 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/20 17:03:28 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/22 17:07:21 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,24 @@ char	*join_args(char **av)
 	new = ft_strdup(tmp);
 	free(tmp);
 	return (new);
+}
+
+int		skip_space(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i] && ft_ispace(s[i]))
+		i++;
+	return (i);
+}
+
+int		skip_digit(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i] && ft_isdigit(s[i]))
+		i++;
+	return (i);
 }

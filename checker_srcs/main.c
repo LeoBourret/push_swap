@@ -6,18 +6,19 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:52:52 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/20 17:17:49 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/22 17:11:43 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	checker(int ac, char **av, t_stack *stack, int verbose)
+void	checker(t_stack *stack, int verbose)
 {
 	char	**orders;
 	int		i;
 	int		ret;
 
+	orders = NULL;
 	ret = manage_orders(orders, stack, verbose);
 	if (ret < 0)
 		return ;
@@ -37,9 +38,9 @@ void	checker(int ac, char **av, t_stack *stack, int verbose)
 
 int		main(int ac, char **av)
 {
-	t_stack *stack;
-	int offset;
-	int verbose;
+	t_stack		*stack;
+	int			offset;
+	int			verbose;
 
 	offset = 1;
 	verbose = 0;
@@ -61,7 +62,7 @@ int		main(int ac, char **av)
 	}
 	if (!(set_stack(av + offset, stack)))
 		return (0);
-	checker(ac - 1, av + offset, stack, verbose);
+	checker(stack, verbose);
 	free_stack(stack);
 	return (0);
 }

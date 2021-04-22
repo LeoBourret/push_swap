@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 16:14:12 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/20 17:17:02 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/22 17:11:03 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,42 @@ int		stack_len(char **stack)
 	return (i);
 }
 
-int		check_args(char **av)
+int		ft_ispace(char c)
+{
+	if ((c >= 9 && c <= 13) || c == ' ')
+		return (1);
+	return (0);
+}
+
+int		check_str(char *av)
 {
 	int		i;
-	int		j;
 	int		index;
-	long	value;
-	char	*ptr;
 
 	i = -1;
 	while (av[++i])
+		if ((!ft_isdigit(av[i]) && !ft_ispace(av[i]) && av[i] != '-')
+		|| (i != 0 && av[i] == '-' && av[i - 1] != ' '))
+			return (0);
+	i = 0;
+	while (av[i])
 	{
 		index = -1;
-		j = -1;
-		while (av[i][++j])
-			if (!ft_isdigit(av[i][j]))
-				return (0);
-		value = ft_atoi(av[i]);
-		if (value > 2147483647 || value < -2147483648)
+		if (ft_atoi(&av[i]) > 2147483647 || ft_atoi(&av[i]) < -2147483648)
 			return (0);
-		while (++index < i)
+		while (++index < i && av[i + 1])
 		{
-			ptr = av[index];
-			if (ft_atoi(ptr) == ft_atoi(av[i]))
+			if (ft_atoi(&av[index]) == ft_atoi(&av[i]))
 				return (0);
+			index += skip_space(&av[index]);
+			if (av[index] == '-')
+				index++;
+			index += skip_digit(&av[index]);
 		}
+		i += skip_space(&av[i]);
+		if (av[i] == '-')
+				i++;
+		i += skip_digit(&av[i]);
 	}
 	return (1);
 }
@@ -60,13 +71,14 @@ int		set_stack(char **av, t_stack *stack)
 	i = -1;
 	index = 0;
 	args = join_args(av);
-	stack->a = ft_split(args, ' ');
-	free(args);
-	if (!check_args(stack->a))
+	if (!check_str(args))
 	{
 		ft_printf("Error\n");
+		free(args);
 		return (0);
 	}
+	stack->a = ft_split(args, ' ');
+	free(args);
 	stack->b = malloc(sizeof(char *) * (stack_len(stack->a) + 1));
 	if (stack->b == NULL)
 		return (0);

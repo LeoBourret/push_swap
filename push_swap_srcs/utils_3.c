@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:38:35 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/12 17:21:52 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/22 15:28:46 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ int		check_str(char *av)
 
 	i = -1;
 	while (av[++i])
-		if (!ft_isdigit(av[i]) && !ft_ispace(av[i]))
+		if ((!ft_isdigit(av[i]) && !ft_ispace(av[i]) && av[i] != '-')
+		|| (i != 0 && av[i] == '-' && av[i - 1] != ' '))
 			return (0);
 	i = 0;
 	while (av[i])
@@ -79,20 +80,24 @@ int		check_str(char *av)
 		index = -1;
 		if (ft_atoi(&av[i]) > 2147483647 || ft_atoi(&av[i]) < -2147483648)
 			return (0);
-		while (++index < i)
+		while (++index < i && av[i + 1])
 		{
 			if (ft_atoi(&av[index]) == ft_atoi(&av[i]))
 				return (0);
 			index += skip_space(&av[index]);
+			if (av[index] == '-')
+				index++;
 			index += skip_digit(&av[index]);
 		}
 		i += skip_space(&av[i]);
+		if (av[i] == '-')
+				i++;
 		i += skip_digit(&av[i]);
 	}
 	return (1);
 }
-
-int		check_args(char **stack)
+/*
+int		check_args(char *stack)
 {
 	int		i;
 	int		j;
@@ -100,15 +105,14 @@ int		check_args(char **stack)
 	long	value;
 	char	*ptr;
 
-	i = -1;
-	while (stack[++i])
+	i = 0;
+	while (stack[i])
 	{
 		index = -1;
-		j = -1;
-		while (stack[i][++j])
-			if (!ft_isdigit(stack[i][j]))
-				return (0);
-		value = ft_atoi(stack[i]);
+		if (!ft_isdigit(stack[i][j]) && stack[i][j] != '-'
+		&& (j != 0 && stack[i][j] == '-' && stack[i][j - 1] != ' '))
+			return (0);
+		value = ft_atoi(&stack[i]);
 		if (value > 2147483647 || value < -2147483648)
 			return (0);
 		while (++index < i)
@@ -119,4 +123,4 @@ int		check_args(char **stack)
 		}
 	}
 	return (1);
-}
+}*/
