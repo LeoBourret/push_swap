@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:39:30 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/22 17:57:02 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/28 15:22:11 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,21 @@ void	launch_solver(int stack_len, t_stack *stack, t_options *options)
 			swap(stack->a, 0, stack, options);
 	}
 	else if (stack_len == 3)
-		solve_three(stack->a, 0);
+		solve_three(stack->a, 0, stack, options);
 	else if (stack_len >= 4 && stack_len <= 5)
 		solve_four_five(stack, stack_len, options);
 	else if (stack_len >= 6 && stack_len <= 10)
-		solve_ten(stack);
+		solve_ten(stack, options);
 	else if (stack_len > 10 && stack_len <= 30)
-		solve_hundred(stack, 8, 0);
+		solve_hundred(stack, 8, 0, options);
 	else if (stack_len > 30 && stack_len < 100)
-		solve_hundred(stack, 15, 0);
+		solve_hundred(stack, 15, 0, options);
 	else if (stack_len >= 100 && stack_len <= 300)
-		solve_hundred(stack, 20, 0);
+		solve_hundred(stack, 20, 0, options);
 	else if (stack_len >= 300 && stack_len <= 700)
-		solve_hundred(stack, 72, 0);
+		solve_hundred(stack, 72, 0, options);
 	else if (stack_len > 700)
-		solve_hundred(stack, 80, 0);
+		solve_hundred(stack, 80, 0, options);
 	print_stack(stack->a, stack->b);
 }
 

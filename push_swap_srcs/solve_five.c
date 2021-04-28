@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:26:13 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/22 17:56:06 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/28 15:22:58 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int		solve_four_five(t_stack *stack, int stack_size, t_options *options)
 		push(stack->b, stack->a, 1, options);
 	if (stack_len(stack->b) == 2 && ft_atoi(stack->b[0]) > ft_atoi(stack->b[1]))
 		swap(stack->b, 1, stack, options);
-	solve_three(stack->a, 0);
+	solve_three(stack->a, 0, stack, options);
 	push_a_correct_order(stack, stack_size, options);
 	if (is_sorted(stack->a))
 		return (1);

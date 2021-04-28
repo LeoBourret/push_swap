@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:41:33 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/22 17:51:52 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/28 14:46:50 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	rotate(char **stack, int c, t_stack *stck, t_options *options)
 		print_stack(stck->a, stck->b);
 }
 
-void	reverse_rotate(char **stack, int c, t_stck, t_options *options)
+void	reverse_rotate(char **stack, int c, t_stack *stck, t_options *options)
 {
 	int		i;
 	char	*tmp;

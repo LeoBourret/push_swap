@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:48:57 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/13 14:48:44 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/28 15:28:46 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*join_args(char **av)
 	return (new);
 }
 
-void	push_min(t_stack *stack, int nb_of_push)
+void	push_min(t_stack *stack, int nb_of_push, t_options *opt)
 {
 	int i;
 	int min;
@@ -52,12 +52,12 @@ void	push_min(t_stack *stack, int nb_of_push)
 		while (ft_atoi(stack->a[i]) != min)
 			i++;
 		set_value_to_top(stack->a, i, 0, stack_len(stack->a) % 2);
-		push_a_elem_to_b_reverse_sort(stack, 0, 0);
+		push_a_to_b_reverse_sort(stack, 0, 0, opt);
 		nb_of_push--;
 	}
 }
 
-void	fix_stack(char **stack)
+void	fix_stack(char **stack, t_stack *stk, t_options *options)
 {
 	int i;
 
@@ -73,10 +73,10 @@ void	fix_stack(char **stack)
 		if (i > (stack_len(stack) / 2))
 		{
 			while (!is_sorted_reverse(stack))
-				reverse_rotate(stack, 1);
+				reverse_rotate(stack, 1, stk, options);
 		}
 		else
 			while (!is_sorted_reverse(stack))
-				rotate(stack, 1);
+				rotate(stack, 1, stk, options);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:19:53 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/12 14:54:10 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/28 15:24:56 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		*get_chunck(int *tab, int *size, char **stack, int i)
 	return (tab);
 }
 
-int		push_back(t_stack *stack)
+int		push_back(t_stack *stack, t_options *options)
 {
 	int i;
 
@@ -57,24 +57,25 @@ int		push_back(t_stack *stack)
 		if (i > (stack_len(stack->b) / 2))
 		{
 			while (!is_sorted_reverse(stack->b))
-				reverse_rotate(stack->b, 1);
+				reverse_rotate(stack->b, 1, stack, options);
 		}
 		else
 			while (!is_sorted_reverse(stack->b))
-				rotate(stack->b, 1);
+				rotate(stack->b, 1, stack, options);
 	}
 	while (stack_len(stack->b))
-		push(stack->a, stack->b, 0);
+		push(stack->a, stack->b, 0, options);
 	return (1);
 }
 
-void	solve_hundred(t_stack *stack, int size_chunck, int *chunck)
+void	solve_hundred(t_stack *stack, int size_chunck, int *chunck,
+t_options *options)
 {
 	int i;
 	int j;
 	int index;
 
-	if (stack_len(stack->a) == 0 && push_back(stack))
+	if (stack_len(stack->a) == 0 && push_back(stack, options))
 		return ;
 	chunck = get_chunck(chunck, &size_chunck, stack->a, -1);
 	index = -1;
@@ -87,12 +88,15 @@ void	solve_hundred(t_stack *stack, int size_chunck, int *chunck)
 		while (!is_in_tab(chunck, ft_atoi(stack->a[j]), size_chunck))
 			j--;
 		j = (j - stack_len(stack->a)) * -1;
-		set_closest_top_min_on_top(stack->a, i, j);
-		if (stack_len(stack->b) == 0 || stack_len(stack->b) == 1)
-			push(stack->b, stack->a, 1);
+		if (i <= j)
+			set_closest_top_min_on_top(stack->a, i, stack, options);
 		else
-			push_a_elem_to_b_reverse_sort(stack, 0, 0);
+			set_closest_top_min_on_top(stack->a, j * -1, stack, options);
+		if (stack_len(stack->b) == 0 || stack_len(stack->b) == 1)
+			push(stack->b, stack->a, 1, options);
+		else
+			push_a_to_b_reverse_sort(stack, 0, 0, options);
 	}
 	free(chunck);
-	solve_hundred(stack, size_chunck, 0);
+	solve_hundred(stack, size_chunck, 0, options);
 }

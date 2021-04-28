@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:38:35 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/22 15:28:46 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/04/28 15:24:37 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int		insertion_place_reverse(char **stack, int value)
 	return (i);
 }
 
-void	push_closest_min(t_stack *stack, int to_find, int *chunck)
+void	push_closest_min(t_stack *stack, int to_find, int *chunck,
+t_options *opt)
 {
 	int index;
 	int i;
@@ -59,8 +60,9 @@ void	push_closest_min(t_stack *stack, int to_find, int *chunck)
 		while (!is_in_tab(chunck, ft_atoi(stack->a[j]), 5))
 			j--;
 		j = (j - stack_len(stack->a)) * -1;
-		set_closest_top_min_on_top(stack->a, i, j);
-		push(stack->b, stack->a, 1);
+		if (i <= j)
+			set_closest_top_min_on_top(stack->a, i, stack, opt);
+		push(stack->b, stack->a, 1, opt);
 	}
 }
 
