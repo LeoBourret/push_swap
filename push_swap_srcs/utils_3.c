@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:38:35 by lebourre          #+#    #+#             */
-/*   Updated: 2021/05/16 15:11:57 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/16 15:22:05 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ void	push_closest_min(t_stack *stack, int to_find, int *chunck)
 			i++;
 		while (!is_in_tab(chunck, ft_atoi(stack->a[j]), 5))
 			j--;
-		j = (j - stack_len(stack->a)) * -1;
+		j = (j - stack_len(stack->a));
 		if (i <= j)
 			set_closest_top_min_on_top(stack->a, i);
+		else
+			set_closest_top_min_on_top(stack->a, j);
 		push(stack->b, stack->a, 1);
 	}
 }

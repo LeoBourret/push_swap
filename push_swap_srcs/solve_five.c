@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:26:13 by lebourre          #+#    #+#             */
-/*   Updated: 2021/05/16 15:14:09 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/16 15:25:19 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		insertion_place(char **stack, int value)
 		else if (value > ft_atoi(stack[i]) && value > ft_atoi(stack[i + 1])
 		&& ft_atoi(stack[i]) > ft_atoi(stack[i + 1]))
 			break ;
-		else if (value < ft_atoi(stack[i]) && value < ft_atoi(stack[i])
+		else if (value < ft_atoi(stack[i]) && value < ft_atoi(stack[i + 1])
 		&& ft_atoi(stack[i]) > ft_atoi(stack[i + 1]))
 			break ;
 		i++;

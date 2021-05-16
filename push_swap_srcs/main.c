@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:39:30 by lebourre          #+#    #+#             */
-/*   Updated: 2021/05/16 15:14:41 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/16 15:19:32 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int		set_stack(char **av, t_stack *stack)
 
 void	launch_solver(int stack_len, t_stack *stack)
 {
+	print_stack(stack->a, stack->b);
 	if (stack_len == 2)
 	{
 		if (ft_atoi(stack->a[0]) > ft_atoi(stack->a[1]))
