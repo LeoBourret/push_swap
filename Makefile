@@ -3,6 +3,11 @@ CHECKER = checker
 CC = clang
 CFLAGS = -Wall -Werror -Wextra
 
+RED="\033[1;31m"
+GRN="\033[1;32m"
+YLW="\033[1;33m"
+END="\033[0m"
+
 CHECKER_FOLDER = ./checker_srcs/
 PUSH_SWAP_FOLDER = ./push_swap_srcs/
 
@@ -19,24 +24,37 @@ P_SRCS = $(PUSH_SWAP_FOLDER)exit.c  $(PUSH_SWAP_FOLDER)main.c \
 C_OBJS = $(C_SRCS:.c=.o)
 P_OBJS = $(P_SRCS:.c=.o)
 
-all: $(PUSH_SWAP)
+all: libft $(PUSH_SWAP)
 
 bonus: $(PUSH_SWAP) $(CHECKER)
 
-libft:
-		make -C libft
-		mv ./libft/libft.a .
+lib:
+		@echo $(YLW)"[Libft compilation...]"
+		@make -C libft/
+		@echo $(GRN)"[Libft ready !]"
+		@echo $(END)
 
-$(CHECKER): libft $(C_OBJS)
-		$(CC) -o $(CHECKER) $(C_OBJS) -L. -lft
+$(CHECKER): lib $(C_OBJS)
+		@echo $(YLW)"[Checker compilation...]"
+		$(CC) $(C_OBJS) -I libft/ -lft -L libft/ -o $(CHECKER)
+		@echo $(GRN)"[Checker ready !]"
+		@echo $(END)
 
-$(PUSH_SWAP): libft $(P_OBJS)
-		$(CC) -o $(PUSH_SWAP) $(P_OBJS) -L. -lft
+$(PUSH_SWAP): lib $(P_OBJS)
+		@echo $(YLW)"[Checker compilation...]"
+		$(CC) $(P_OBJS) -I libft/ -lft -L libft/ -o $(PUSH_SWAP)
+		@echo $(GRN)"[Checker ready !]"
+		@echo $(END)
+
 
 clean:
 		rm -f $(C_OBJS) $(P_OBJS)
 fclean: clean
 		rm -f $(CHECKER) $(PUSH_SWAP)
+
+cleanlib:
+		make fclean -C libft/
+
 re: fclean all
 
 .PHONY: checker push_swap

@@ -18,39 +18,46 @@ SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 
 OBJ = $(SRC:.c=.o)
 
+OBJ_PFT = ./srcs/ft_display.o \
+			./srcs/ft_manage_addr.o \
+			./srcs/ft_manage_char.o \
+			./srcs/ft_manage_char.o \
+			./srcs/ft_manage_flags.o \
+			./srcs/ft_manage_hex.o \
+			./srcs/ft_manage_int.o \
+			./srcs/ft_manage_uint.o \
+			./srcs/ft_manage_percent.o \
+			./srcs/ft_manage_str.o \
+			./srcs/ft_manage_type.o \
+			./srcs/ft_manage_width.o \
+			./srcs/ft_manager.o \
+			./srcs/ft_printf.o \
+			./srcs/ft_tools.o \
+			./srcs/ft_tools2.o
+
+LOCATION = $(addprefix libft/ $(OBJ_PFT))
+
 NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-RED          := $(shell tput -Txterm setaf 1)
-GREEN        := $(shell tput -Txterm setaf 2)
-YELLOW       := $(shell tput -Txterm setaf 3)
-LIGHTPURPLE  := $(shell tput -Txterm setaf 4)
-PURPLE       := $(shell tput -Txterm setaf 5)
-BLUE         := $(shell tput -Txterm setaf 6)
-WHITE        := $(shell tput -Txterm setaf 7)
-
-RESET        := $(shell tput -Txterm sgr0)
-
 all: $(NAME)
 
-$(NAME): $(OBJ)
-		@echo ""
-		@echo "$(BLUE)	[	generating libft.a	]$(RESET)"
-		@echo ""
+pft:
 		@make -C ft_printf
-		@mv ft_printf/libftprintf.a $(NAME)
-		ar rcs $(NAME) $(OBJ)
+
+$(NAME): pft $(OBJ)
+		@make -C ft_printf
+		@ar rcs $(NAME) $(OBJ) $(OBJ_PFT)
+
 
 clean:
-		@echo ""
-		@echo "$(PURPLE)	[	cleaning	]$(RESET)"
-		@echo ""
 		$(RM) $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
-		$(RM) $(NAME)
+		@$(RM) $(NAME)
+		@make fclean -C ft_printf/
 
 re: fclean all
 
