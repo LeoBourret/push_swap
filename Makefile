@@ -2,7 +2,7 @@ PUSH_SWAP = push_swap
 CHECKER = checker
 CC = clang
 CFLAGS = -Wall -Werror -Wextra
-
+MAKEFLAGS += --no-print-directory
 RED="\033[1;31m"
 GRN="\033[1;32m"
 YLW="\033[1;33m"
@@ -24,7 +24,7 @@ P_SRCS = $(PUSH_SWAP_FOLDER)exit.c  $(PUSH_SWAP_FOLDER)main.c \
 C_OBJS = $(C_SRCS:.c=.o)
 P_OBJS = $(P_SRCS:.c=.o)
 
-all: libft $(PUSH_SWAP)
+all: lib $(PUSH_SWAP)
 
 bonus: $(PUSH_SWAP) $(CHECKER)
 
@@ -34,27 +34,34 @@ lib:
 		@echo $(GRN)"[Libft ready !]"
 		@echo $(END)
 
-$(CHECKER): lib $(C_OBJS)
+$(CHECKER): $(C_OBJS)
 		@echo $(YLW)"[Checker compilation...]"
-		$(CC) $(C_OBJS) -I libft/ -lft -L libft/ -o $(CHECKER)
+		@$(CC) $(C_OBJS) -I libft/ -lft -L libft/ -o $(CHECKER)
 		@echo $(GRN)"[Checker ready !]"
 		@echo $(END)
 
-$(PUSH_SWAP): lib $(P_OBJS)
-		@echo $(YLW)"[Checker compilation...]"
-		$(CC) $(P_OBJS) -I libft/ -lft -L libft/ -o $(PUSH_SWAP)
-		@echo $(GRN)"[Checker ready !]"
+$(PUSH_SWAP):  $(P_OBJS)
+		@echo $(YLW)"[Push_swap compilation...]"
+		@$(CC) $(P_OBJS) -I libft/ -lft -L libft/ -o $(PUSH_SWAP)
+		@echo $(GRN)"[push_swap ready !]"
 		@echo $(END)
-
 
 clean:
-		rm -f $(C_OBJS) $(P_OBJS)
+		@echo $(RED)"[Cleaning PUSH_SWAP and CHECKER objects !]"
+		@echo $(END)
+		@rm -f $(C_OBJS) $(P_OBJS)
+
 fclean: clean
-		rm -f $(CHECKER) $(PUSH_SWAP)
+		@echo $(RED)"[Cleaning PUSH_SWAP and CHECKER binary !]"
+		@echo $(END)
+		@rm -f $(CHECKER) $(PUSH_SWAP)
 
 cleanlib:
-		make fclean -C libft/
+		@echo $(RED)"[Cleaning Libft !]"
+		@echo $(END)
+		@make fclean -C libft/
 
 re: fclean all
 
 .PHONY: checker push_swap
+.SILENT:

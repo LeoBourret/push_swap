@@ -16,26 +16,30 @@ SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 		ft_lstmap.c			\
 		ft_lstsize.c
 
+MAKEFLAGS += --no-print-directory
+
 OBJ = $(SRC:.c=.o)
 
-OBJ_PFT = ./srcs/ft_display.o \
-			./srcs/ft_manage_addr.o \
-			./srcs/ft_manage_char.o \
-			./srcs/ft_manage_char.o \
-			./srcs/ft_manage_flags.o \
-			./srcs/ft_manage_hex.o \
-			./srcs/ft_manage_int.o \
-			./srcs/ft_manage_uint.o \
-			./srcs/ft_manage_percent.o \
-			./srcs/ft_manage_str.o \
-			./srcs/ft_manage_type.o \
-			./srcs/ft_manage_width.o \
-			./srcs/ft_manager.o \
-			./srcs/ft_printf.o \
-			./srcs/ft_tools.o \
-			./srcs/ft_tools2.o
+PFT_DIR = ft_printf/
 
-LOCATION = $(addprefix libft/ $(OBJ_PFT))
+OBJ_PFT = ft_printf/src/ft_display.o \
+			ft_printf/src/ft_manage_addr.o\
+			ft_printf/src/ft_manage_char.o \
+			ft_printf/src/ft_manage_char.o \
+			ft_printf/src/ft_manage_flags.o \
+			ft_printf/src/ft_manage_hex.o \
+			ft_printf/src/ft_manage_int.o \
+			ft_printf/src/ft_manage_uint.o \
+			ft_printf/src/ft_manage_percent.o \
+			ft_printf/src/ft_manage_str.o \
+			ft_printf/src/ft_manage_type.o \
+			ft_printf/src/ft_manage_width.o \
+			ft_printf/src/ft_manager.o \
+			ft_printf/src/ft_printf.o \
+			ft_printf/src/ft_tools.o \
+			ft_printf/src/ft_tools2.o
+
+LOCATION = $(addprefix $(PFT_DIR), $(OBJ_PFT))
 
 NAME = libft.a
 CC = gcc
@@ -48,16 +52,15 @@ pft:
 		@make -C ft_printf
 
 $(NAME): pft $(OBJ)
-		@make -C ft_printf
 		@ar rcs $(NAME) $(OBJ) $(OBJ_PFT)
 
 
 clean:
-		$(RM) $(OBJ) $(BONUS_OBJ)
+		@$(RM) $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
 		@$(RM) $(NAME)
-		@make fclean -C ft_printf/
+		@make clean -C ft_printf/
 
 re: fclean all
 
