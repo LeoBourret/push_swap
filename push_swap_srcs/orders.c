@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:41:33 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/28 14:46:50 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/16 15:04:33 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	print_stack(char **stack1, char **stack2)
 	ft_printf("\n");
 }
 
-void	swap(char **stack, int c, t_stack *stck, t_options *options)
+void	swap(char **stack, int c)
 {
 	char *swap;
 
@@ -54,11 +54,9 @@ void	swap(char **stack, int c, t_stack *stck, t_options *options)
 		ft_printf("sa\n");
 	else
 		ft_printf("sb\n");
-	if (options->verbose == 1)
-		print_stack(stck->a, stck->b);
 }
 
-void	push(char **stack_dest, char **stack_src, int c, t_options *options)
+void	push(char **stack_dest, char **stack_src, int c)
 {
 	int		i;
 
@@ -83,23 +81,14 @@ void	push(char **stack_dest, char **stack_src, int c, t_options *options)
 		ft_printf("pa\n");
 	else
 		ft_printf("pb\n");
-	if (options->verbose == 1)
-	{
-		if (c == 0)
-			print_stack(stack_dest, stack_src);
-		else
-			print_stack(stack_src, stack_dest);
-	}
 }
 
-void	rotate(char **stack, int c, t_stack *stck, t_options *options)
+void	rotate(char **stack, int c)
 {
 	int		i;
 	char	*tmp;
 
 	i = 0;
-//	if (!*stack)
-//		return ;
 	while (stack[i + 1])
 		i++;
 	tmp = ft_strdup(stack[i]);
@@ -119,18 +108,14 @@ void	rotate(char **stack, int c, t_stack *stck, t_options *options)
 		ft_printf("ra\n");
 	else
 		ft_printf("rb\n");
-	if (options->verbose == 1)
-		print_stack(stck->a, stck->b);
 }
 
-void	reverse_rotate(char **stack, int c, t_stack *stck, t_options *options)
+void	reverse_rotate(char **stack, int c)
 {
 	int		i;
 	char	*tmp;
 
 	i = 0;
-//	if (!*stack)
-//		return ;
 	while (stack[i + 1])
 		i++;
 	tmp = ft_strdup(stack[0]);
@@ -149,6 +134,4 @@ void	reverse_rotate(char **stack, int c, t_stack *stck, t_options *options)
 		ft_printf("rra\n");
 	else
 		ft_printf("rrb\n");
-	if (options->verbose == 1)
-		print_stack(stck->a, stck->b);
 }

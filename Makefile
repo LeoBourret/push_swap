@@ -15,7 +15,7 @@ P_SRCS = $(PUSH_SWAP_FOLDER)exit.c  $(PUSH_SWAP_FOLDER)main.c \
 			$(PUSH_SWAP_FOLDER)solve_ten.c $(PUSH_SWAP_FOLDER)solve_three.c \
 			$(PUSH_SWAP_FOLDER)solve_hundred.c $(PUSH_SWAP_FOLDER)utils.c \
 			$(PUSH_SWAP_FOLDER)utils_2.c $(PUSH_SWAP_FOLDER)utils_3.c \
-			$(PUSH_SWAP_FOLDER)utils_4.c $(PUSH_SWAP_FOLDER)options.c
+			$(PUSH_SWAP_FOLDER)utils_4.c
 C_OBJS = $(C_SRCS:.c=.o)
 P_OBJS = $(P_SRCS:.c=.o)
 

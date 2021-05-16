@@ -6,39 +6,39 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:51:32 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/28 14:54:03 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/16 15:10:45 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	solve_three_reverse_2(char **stack, int c, t_stack *stk, t_options *opt)
+void	solve_three_reverse_2(char **stack, int c)
 {
 	if (ft_atoi(stack[0]) > ft_atoi(stack[1])
 	&& ft_atoi(stack[1]) < ft_atoi(stack[2])
 	&& ft_atoi(stack[0]) < ft_atoi(stack[2]))
 	{
-		reverse_rotate(stack, c, stk, opt);
+		reverse_rotate(stack, c);
 		return ;
 	}
 	else if (ft_atoi(stack[0]) < ft_atoi(stack[1])
 	&& ft_atoi(stack[1]) > ft_atoi(stack[2])
 	&& ft_atoi(stack[0]) > ft_atoi(stack[2]))
 	{
-		swap(stack, c, stk, opt);
+		swap(stack, c);
 		return ;
 	}
 	else if (ft_atoi(stack[0]) > ft_atoi(stack[1])
 	&& ft_atoi(stack[1]) < ft_atoi(stack[2])
 	&& ft_atoi(stack[0]) > ft_atoi(stack[2]))
 	{
-		reverse_rotate(stack, c, stk, opt);
-		swap(stack, c, stk, opt);
+		reverse_rotate(stack, c);
+		swap(stack, c);
 		return ;
 	}
 }
 
-void	solve_three_reverse(char **stack, int c, t_stack *stk, t_options *opt)
+void	solve_three_reverse(char **stack, int c)
 {
 	if (ft_atoi(stack[0]) > ft_atoi(stack[1])
 	&& ft_atoi(stack[1]) > ft_atoi(stack[2]))
@@ -49,47 +49,47 @@ void	solve_three_reverse(char **stack, int c, t_stack *stk, t_options *opt)
 	&& ft_atoi(stack[1]) < ft_atoi(stack[2])
 	&& ft_atoi(stack[0]) < ft_atoi(stack[2]))
 	{
-		rotate(stack, c, stk, opt);
-		swap(stack, c, stk, opt);
+		rotate(stack, c);
+		swap(stack, c);
 		return ;
 	}
 	else if (ft_atoi(stack[0]) < ft_atoi(stack[1])
 	&& ft_atoi(stack[1]) > ft_atoi(stack[2])
 	&& ft_atoi(stack[0]) < ft_atoi(stack[2]))
 	{
-		rotate(stack, c, stk, opt);
+		rotate(stack, c);
 		return ;
 	}
-	solve_three_reverse_2(stack, c, stk, opt);
+	solve_three_reverse_2(stack, c);
 }
 
-void	solve_three_2(char **stack, int c, t_stack *stk, t_options *opt)
+void	solve_three_2(char **stack, int c)
 {
 	if (ft_atoi(stack[0]) < ft_atoi(stack[1])
 	&& ft_atoi(stack[1]) > ft_atoi(stack[2])
 	&& ft_atoi(stack[0]) > ft_atoi(stack[2]))
 	{
-		reverse_rotate(stack, c, stk, opt);
+		reverse_rotate(stack, c);
 		return ;
 	}
 	else if (ft_atoi(stack[0]) > ft_atoi(stack[1])
 	&& ft_atoi(stack[1]) < ft_atoi(stack[2])
 	&& ft_atoi(stack[0]) > ft_atoi(stack[2]))
 	{
-		rotate(stack, c, stk, opt);
+		rotate(stack, c);
 		return ;
 	}
 	else if (ft_atoi(stack[0]) > ft_atoi(stack[1])
 	&& ft_atoi(stack[1]) > ft_atoi(stack[2])
 	&& ft_atoi(stack[0]) > ft_atoi(stack[2]))
 	{
-		swap(stack, c, stk, opt);
-		reverse_rotate(stack, c, stk, opt);
+		swap(stack, c);
+		reverse_rotate(stack, c);
 		return ;
 	}
 }
 
-int		solve_three(char **stack, int c, t_stack *stk, t_options *opt)
+int		solve_three(char **stack, int c)
 {
 	if (ft_atoi(stack[0]) < ft_atoi(stack[1])
 	&& ft_atoi(stack[1]) < ft_atoi(stack[2]))
@@ -98,18 +98,18 @@ int		solve_three(char **stack, int c, t_stack *stk, t_options *opt)
 	&& ft_atoi(stack[1]) > ft_atoi(stack[2])
 	&& ft_atoi(stack[0]) < ft_atoi(stack[2]))
 	{
-		swap(stack, c, stk, opt);
-		rotate(stack, c, stk, opt);
+		swap(stack, c);
+		rotate(stack, c);
 		return (1);
 	}
 	else if (ft_atoi(stack[0]) > ft_atoi(stack[1])
 	&& ft_atoi(stack[1]) < ft_atoi(stack[2])
 	&& ft_atoi(stack[0]) < ft_atoi(stack[2]))
 	{
-		swap(stack, c, stk, opt);
+		swap(stack, c);
 		return (1);
 	}
 	else
-		solve_three_2(stack, c, stk, opt);
+		solve_three_2(stack, c);
 	return (1);
 }
