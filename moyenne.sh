@@ -7,19 +7,20 @@ declare -i tmp=0;
 declare -i min=1000000;
 declare -i max=0;
 
-coucou()
+full()
 {
 	./push_swap $arg | ./checker $arg;
 }
-bite()
+
+push()
 {
 	./push_swap $arg | wc -l
 }
 
 for i in $( eval echo {1..$count} )
-	do 
+	do
 		arg=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`;
-		tmp=$(bite)
+		tmp=$(push)
 		if [ $tmp -gt $max ];
 		then
 			max=$tmp
@@ -27,7 +28,7 @@ for i in $( eval echo {1..$count} )
 		then
 			min=$tmp
 		fi
-		arg2=$(coucou)
+		arg2=$(full)
 		echo "$i / $count: $tmp | $arg2"
 		total+=$tmp
 	done

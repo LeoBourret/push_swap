@@ -19,7 +19,9 @@ P_SRCS = $(PUSH_SWAP_FOLDER)exit.c  $(PUSH_SWAP_FOLDER)main.c \
 C_OBJS = $(C_SRCS:.c=.o)
 P_OBJS = $(P_SRCS:.c=.o)
 
-all: $(CHECKER) $(PUSH_SWAP)
+all: $(PUSH_SWAP)
+
+bonus: $(PUSH_SWAP) $(CHECKER)
 
 libft:
 		make -C libft

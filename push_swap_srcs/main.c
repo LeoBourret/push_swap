@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:39:30 by lebourre          #+#    #+#             */
-/*   Updated: 2021/05/16 16:01:51 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/16 16:58:26 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int		set_stack(char **av, t_stack *stack)
 
 void	launch_solver(int stack_len, t_stack *stack)
 {
-	print_stack(stack->a, stack->b);
 	if (stack_len == 2)
 	{
 		if (ft_atoi(stack->a[0]) > ft_atoi(stack->a[1]))
@@ -58,9 +57,6 @@ void	launch_solver(int stack_len, t_stack *stack)
 		solve_hundred(stack, 72, 0, -1);
 	else if (stack_len > 700)
 		solve_hundred(stack, 80, 0, -1);
-	print_stack(stack->a, stack->b);
-	if (!is_sorted(stack->a))
-		ft_printf("KO !\n");
 }
 
 int		check_settings(int ac, char **av, t_stack *stack)
