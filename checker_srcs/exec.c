@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 15:13:03 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/22 17:11:24 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/16 16:17:27 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		execute_orders_3(t_stack *stack, char *orders)
 		push(stack->a, stack->b);
 	else if ((ft_strcmp(orders, "pb")) == 0)
 		push(stack->b, stack->a);
-	else
+	else if (*orders != '\0')
 	{
 		ft_putstr_fd("Error\n", 1);
 		return (0);
@@ -54,7 +54,7 @@ int		execute_orders_2(t_stack *stack, char *orders)
 	return (1);
 }
 
-int		execute_orders(t_stack *stack, char *orders, int verbose)
+int		execute_orders(t_stack *stack, char *orders)
 {
 	if ((ft_strcmp(orders, "sa")) == 0)
 		swap(stack->a);
@@ -70,7 +70,5 @@ int		execute_orders(t_stack *stack, char *orders, int verbose)
 		if ((execute_orders_2(stack, orders)) == 0)
 			return (0);
 	}
-	if (verbose == 1)
-		print_stack(stack->a, stack->b);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 15:53:15 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/22 17:14:49 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/16 16:04:35 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,11 @@ typedef	struct	s_stack
 	char	**b;
 }				t_stack;
 
-typedef	struct	s_options
-{
-	int		offset;
-	int		verbose;
-}				t_options;
-
-int			manage_orders(char **orders, t_stack *stack, int verbose);
+int			manage_orders(char **orders, t_stack *stack);
 int			set_stack(char **av, t_stack *stack);
 int			check_args(char **av);
 int			stack_len(char **stack);
-int			execute_orders(t_stack *t_stack, char *orders, int verbose);
+int			execute_orders(t_stack *t_stack, char *orders);
 int			get_next_line(int fd, char **lines);
 void		print_stack(char **stack1, char **stack2);
 void		reverse_rotate(char **stack);

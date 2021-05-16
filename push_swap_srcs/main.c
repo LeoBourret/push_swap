@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:39:30 by lebourre          #+#    #+#             */
-/*   Updated: 2021/05/16 15:19:32 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/16 16:01:51 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		set_stack(char **av, t_stack *stack)
 	char	*args;
 
 	args = join_args(av);
-	if (!check_str(args))
+	if (!check_str(args, -1, 0))
 	{
 		free(args);
 		return (0);
@@ -49,15 +49,15 @@ void	launch_solver(int stack_len, t_stack *stack)
 	else if (stack_len >= 6 && stack_len <= 10)
 		solve_ten(stack);
 	else if (stack_len > 10 && stack_len <= 30)
-		solve_hundred(stack, 8, 0);
+		solve_hundred(stack, 8, 0, -1);
 	else if (stack_len > 30 && stack_len < 100)
-		solve_hundred(stack, 15, 0);
+		solve_hundred(stack, 15, 0, -1);
 	else if (stack_len >= 100 && stack_len <= 300)
-		solve_hundred(stack, 20, 0);
+		solve_hundred(stack, 20, 0, -1);
 	else if (stack_len >= 300 && stack_len <= 700)
-		solve_hundred(stack, 72, 0);
+		solve_hundred(stack, 72, 0, -1);
 	else if (stack_len > 700)
-		solve_hundred(stack, 80, 0);
+		solve_hundred(stack, 80, 0, -1);
 	print_stack(stack->a, stack->b);
 	if (!is_sorted(stack->a))
 		ft_printf("KO !\n");

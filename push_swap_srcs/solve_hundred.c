@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:19:53 by lebourre          #+#    #+#             */
-/*   Updated: 2021/05/16 15:11:36 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/16 15:59:58 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,22 @@ int		push_back(t_stack *stack)
 	return (1);
 }
 
-void	solve_hundred(t_stack *stack, int size_chunck, int *chunck)
+void	which_side(t_stack *stack, int i, int j)
+{
+	if (i <= j)
+		set_closest_top_min_on_top(stack->a, i);
+	else
+		set_closest_top_min_on_top(stack->a, j * -1);
+}
+
+void	solve_hundred(t_stack *stack, int size_chunck, int *chunck, int index)
 {
 	int i;
 	int j;
-	int index;
 
 	if (stack_len(stack->a) == 0 && push_back(stack))
 		return ;
 	chunck = get_chunck(chunck, &size_chunck, stack->a, -1);
-	index = -1;
 	while (++index < size_chunck)
 	{
 		i = 0;
@@ -87,15 +93,12 @@ void	solve_hundred(t_stack *stack, int size_chunck, int *chunck)
 		while (!is_in_tab(chunck, ft_atoi(stack->a[j]), size_chunck))
 			j--;
 		j = (j - stack_len(stack->a)) * -1;
-		if (i <= j)
-			set_closest_top_min_on_top(stack->a, i);
-		else
-			set_closest_top_min_on_top(stack->a, j * -1);
+		which_side(stack, i, j);
 		if (stack_len(stack->b) == 0 || stack_len(stack->b) == 1)
 			push(stack->b, stack->a, 1);
 		else
 			push_a_to_b_reverse_sort(stack, 0, 0);
 	}
 	free(chunck);
-	solve_hundred(stack, size_chunck, 0);
+	solve_hundred(stack, size_chunck, 0, -1);
 }

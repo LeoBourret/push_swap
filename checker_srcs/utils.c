@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 16:14:12 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/22 17:11:03 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/16 16:19:25 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,8 @@ int		ft_ispace(char c)
 	return (0);
 }
 
-int		check_str(char *av)
+int		check_str(char *av, int i, int index)
 {
-	int		i;
-	int		index;
-
-	i = -1;
 	while (av[++i])
 		if ((!ft_isdigit(av[i]) && !ft_ispace(av[i]) && av[i] != '-')
 		|| (i != 0 && av[i] == '-' && av[i - 1] != ' '))
@@ -56,7 +52,7 @@ int		check_str(char *av)
 		}
 		i += skip_space(&av[i]);
 		if (av[i] == '-')
-				i++;
+			i++;
 		i += skip_digit(&av[i]);
 	}
 	return (1);
@@ -71,7 +67,7 @@ int		set_stack(char **av, t_stack *stack)
 	i = -1;
 	index = 0;
 	args = join_args(av);
-	if (!check_str(args))
+	if (!check_str(args, -1, -1))
 	{
 		ft_printf("Error\n");
 		free(args);
@@ -88,7 +84,7 @@ int		set_stack(char **av, t_stack *stack)
 	return (1);
 }
 
-int		manage_orders(char **orders, t_stack *stack, int verbose)
+int		manage_orders(char **orders, t_stack *stack)
 {
 	int i;
 	int ret;
@@ -98,13 +94,12 @@ int		manage_orders(char **orders, t_stack *stack, int verbose)
 	orders = ft_realloc_double(orders);
 	while ((ret = get_next_line(0, &orders[++i])) > 0)
 	{
-		if (!(execute_orders(stack, orders[i], verbose)))
+		if (!(execute_orders(stack, orders[i])))
 		{
 			free(orders);
 			return (-1);
 		}
 		orders = ft_realloc_double(orders);
-		
 	}
 	if (ret < 0)
 	{

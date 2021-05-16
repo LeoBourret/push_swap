@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:38:35 by lebourre          #+#    #+#             */
-/*   Updated: 2021/05/16 15:22:05 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/16 16:01:46 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,8 @@ void	push_closest_min(t_stack *stack, int to_find, int *chunck)
 	}
 }
 
-int		check_str(char *av)
+int		check_str(char *av, int i, int index)
 {
-	int		i;
-	int		index;
-
-	i = -1;
 	while (av[++i])
 		if ((!ft_isdigit(av[i]) && !ft_ispace(av[i]) && av[i] != '-')
 		|| (i != 0 && av[i] == '-' && av[i - 1] != ' '))
@@ -94,36 +90,8 @@ int		check_str(char *av)
 		}
 		i += skip_space(&av[i]);
 		if (av[i] == '-')
-				i++;
+			i++;
 		i += skip_digit(&av[i]);
 	}
 	return (1);
 }
-/*
-int		check_args(char *stack)
-{
-	int		i;
-	int		j;
-	int		index;
-	long	value;
-	char	*ptr;
-
-	i = 0;
-	while (stack[i])
-	{
-		index = -1;
-		if (!ft_isdigit(stack[i][j]) && stack[i][j] != '-'
-		&& (j != 0 && stack[i][j] == '-' && stack[i][j - 1] != ' '))
-			return (0);
-		value = ft_atoi(&stack[i]);
-		if (value > 2147483647 || value < -2147483648)
-			return (0);
-		while (++index < i)
-		{
-			ptr = stack[index];
-			if (ft_atoi(ptr) == ft_atoi(stack[i]))
-				return (0);
-		}
-	}
-	return (1);
-}*/
