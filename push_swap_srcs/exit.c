@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:21:56 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/12 17:24:41 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:17:49 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_stack(t_stack *stack)
 	int i;
 
 	i = -1;
+	if (!stack)
+		return ;
 	if (stack->a)
 	{
 		while (stack->a[++i])

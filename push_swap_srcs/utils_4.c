@@ -6,11 +6,29 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:48:57 by lebourre          #+#    #+#             */
-/*   Updated: 2021/05/16 15:12:32 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:19:07 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+char	*cat_space(char *s)
+{
+	int		i;
+	int		len;
+	char	*ret;
+
+	len = ft_strlen(s) - 1;
+	while (len > 0 && s[len] == ' ')
+		len--;
+	ret = malloc(sizeof(char) * len + 1);
+	i = -1;
+	while (++i <= len)
+		ret[i] = s[i];
+	ret[i] = '\0';
+	free(s);
+	return (ret);
+}
 
 char	*join_args(char **av)
 {
@@ -37,7 +55,7 @@ char	*join_args(char **av)
 	}
 	new = ft_strdup(tmp);
 	free(tmp);
-	return (new);
+	return (cat_space(new));
 }
 
 void	push_min(t_stack *stack, int nb_of_push)

@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 16:39:30 by lebourre          #+#    #+#             */
-/*   Updated: 2021/05/16 16:58:26 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:33:07 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,7 @@ void	launch_solver(int stack_len, t_stack *stack)
 
 int		check_settings(int ac, char **av, t_stack *stack)
 {
-	if (stack == NULL)
-	{
-		ft_printf("malloc error\n");
-		return (0);
-	}
-	else if (ac < 2)
+	if (ac < 2)
 	{
 		ft_printf("Error\n");
 		return (0);
@@ -88,6 +83,8 @@ int		main(int ac, char **av)
 	t_stack *stack;
 
 	stack = malloc(sizeof(stack));
+	stack->a = NULL;
+	stack->b = NULL;
 	if (!check_settings(ac, av + 1, stack))
 		return (1);
 	launch_solver(stack_len(stack->a), stack);

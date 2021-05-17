@@ -22,22 +22,22 @@ OBJ = $(SRC:.c=.o)
 
 PFT_DIR = ft_printf/
 
-OBJ_PFT = ft_printf/src/ft_display.o \
-			ft_printf/src/ft_manage_addr.o\
-			ft_printf/src/ft_manage_char.o \
-			ft_printf/src/ft_manage_char.o \
-			ft_printf/src/ft_manage_flags.o \
-			ft_printf/src/ft_manage_hex.o \
-			ft_printf/src/ft_manage_int.o \
-			ft_printf/src/ft_manage_uint.o \
-			ft_printf/src/ft_manage_percent.o \
-			ft_printf/src/ft_manage_str.o \
-			ft_printf/src/ft_manage_type.o \
-			ft_printf/src/ft_manage_width.o \
-			ft_printf/src/ft_manager.o \
-			ft_printf/src/ft_printf.o \
-			ft_printf/src/ft_tools.o \
-			ft_printf/src/ft_tools2.o
+OBJ_PFT = ft_printf/srcs/ft_display.o \
+			ft_printf/srcs/ft_manage_addr.o\
+			ft_printf/srcs/ft_manage_char.o \
+			ft_printf/srcs/ft_manage_char.o \
+			ft_printf/srcs/ft_manage_flags.o \
+			ft_printf/srcs/ft_manage_hex.o \
+			ft_printf/srcs/ft_manage_int.o \
+			ft_printf/srcs/ft_manage_uint.o \
+			ft_printf/srcs/ft_manage_percent.o \
+			ft_printf/srcs/ft_manage_str.o \
+			ft_printf/srcs/ft_manage_type.o \
+			ft_printf/srcs/ft_manage_width.o \
+			ft_printf/srcs/ft_manager.o \
+			ft_printf/srcs/ft_printf.o \
+			ft_printf/srcs/ft_tools.o \
+			ft_printf/srcs/ft_tools2.o
 
 LOCATION = $(addprefix $(PFT_DIR), $(OBJ_PFT))
 

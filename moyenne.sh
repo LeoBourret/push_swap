@@ -19,7 +19,7 @@ push()
 
 for i in $( eval echo {1..$count} )
 	do
-		arg=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`;
+		arg=`ruby -e "puts (-100..300).to_a.shuffle.join(' ')"`;
 		tmp=$(push)
 		if [ $tmp -gt $max ];
 		then

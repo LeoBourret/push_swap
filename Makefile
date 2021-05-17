@@ -26,7 +26,7 @@ P_OBJS = $(P_SRCS:.c=.o)
 
 all: lib $(PUSH_SWAP)
 
-bonus: $(PUSH_SWAP) $(CHECKER)
+bonus: lib $(PUSH_SWAP) $(CHECKER)
 
 lib:
 		@echo $(YLW)"[Libft compilation...]"
@@ -51,7 +51,7 @@ clean:
 		@echo $(END)
 		@rm -f $(C_OBJS) $(P_OBJS)
 
-fclean: clean
+fclean: clean cleanlib
 		@echo $(RED)"[Cleaning PUSH_SWAP and CHECKER binary !]"
 		@echo $(END)
 		@rm -f $(CHECKER) $(PUSH_SWAP)
@@ -62,6 +62,8 @@ cleanlib:
 		@make fclean -C libft/
 
 re: fclean all
+
+re_bonus: fclean bonus
 
 .PHONY: checker push_swap
 .SILENT:
