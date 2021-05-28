@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_double_strlen.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lebourre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 18:22:41 by lebourre          #+#    #+#             */
-/*   Updated: 2021/05/25 14:39:12 by lebourre         ###   ########.fr       */
+/*   Created: 2021/05/18 11:27:32 by lebourre          #+#    #+#             */
+/*   Updated: 2021/05/25 14:35:52 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+size_t	ft_double_strlen(char **str)
 {
 	int		i;
 
 	i = 0;
-	while (lst)
-	{
-		lst = lst->next;
+	while (str[i])
 		i++;
-	}
 	return (i);
 }

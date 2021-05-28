@@ -6,13 +6,13 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 15:13:03 by lebourre          #+#    #+#             */
-/*   Updated: 2021/05/16 16:17:27 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/25 14:57:36 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int		execute_orders_3(t_stack *stack, char *orders)
+int	execute_orders_3(t_stack *stack, char *orders)
 {
 	if ((ft_strcmp(orders, "pa")) == 0)
 		push(stack->a, stack->b);
@@ -26,7 +26,7 @@ int		execute_orders_3(t_stack *stack, char *orders)
 	return (1);
 }
 
-int		execute_orders_2(t_stack *stack, char *orders)
+int	execute_orders_2(t_stack *stack, char *orders)
 {
 	if ((ft_strcmp(orders, "ra")) == 0)
 		rotate(stack->a);
@@ -54,7 +54,7 @@ int		execute_orders_2(t_stack *stack, char *orders)
 	return (1);
 }
 
-int		execute_orders(t_stack *stack, char *orders)
+int	execute_orders(t_stack *stack, char *orders)
 {
 	if ((ft_strcmp(orders, "sa")) == 0)
 		swap(stack->a);

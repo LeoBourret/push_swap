@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 12:48:02 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/20 16:38:18 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/25 14:57:49 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_orders(char **orders)
 {
-	int i;
+	int		i;
 
 	if (orders)
 	{
@@ -27,7 +27,7 @@ void	free_orders(char **orders)
 
 void	free_stack(t_stack *stack)
 {
-	int i;
+	int		i;
 
 	i = -1;
 	if (stack->a)

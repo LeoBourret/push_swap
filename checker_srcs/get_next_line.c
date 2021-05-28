@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 18:21:42 by lebourre          #+#    #+#             */
-/*   Updated: 2021/03/25 14:16:28 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/25 15:08:12 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char	*ft_strncpy(char *s, int n)
 	int		i;
 
 	i = 0;
-	if (!(new = malloc(sizeof(char) * n + 1)))
+	new = malloc(sizeof(char) * n + 1);
+	if (new == NULL)
 		return (NULL);
 	while (s[i] && i < n)
 	{
@@ -29,7 +30,7 @@ char	*ft_strncpy(char *s, int n)
 	return (new);
 }
 
-int		fill_line(char **file_content, char **line)
+int	fill_line(char **file_content, char **line)
 {
 	int		len;
 	char	*tmp;
@@ -57,7 +58,7 @@ int		fill_line(char **file_content, char **line)
 	return (1);
 }
 
-int		manage_return(char **file_content, char **line, int ret, char *buffer)
+int	manage_return(char **file_content, char **line, int ret, char *buffer)
 {
 	free(buffer);
 	if (ret < 0)
@@ -79,15 +80,22 @@ int		manage_return(char **file_content, char **line, int ret, char *buffer)
 	}
 }
 
-int		get_next_line(int fd, char **line)
+int	check_error(char *buf, int fd, char **line)
 {
-	static char *file_content;
+	if (!buf || !line || fd < 0)
+		return (0);
+	return (1);
+}
+
+int	get_next_line(int fd, char **line)
+{
+	static char	*file_content;
 	char		*buff;
 	char		*tmp;
 	int			ret;
 
-	if (!(buff = malloc(sizeof(char) * (4096 + 1)))
-	|| fd < 0 || !line || 4096 <= 0)
+	buff = malloc(sizeof(char) * 4096 + 1);
+	if (!check_error(buff, fd, line))
 		return (-1);
 	while ((ret = read(fd, buff, 4096)) > 0)
 	{

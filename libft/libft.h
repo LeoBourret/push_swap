@@ -6,7 +6,7 @@
 /*   By: lebourre <lebourre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 15:04:01 by lebourre          #+#    #+#             */
-/*   Updated: 2021/04/20 16:56:46 by lebourre         ###   ########.fr       */
+/*   Updated: 2021/05/25 14:57:17 by lebourre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -45,6 +45,7 @@ int				ft_isprint(int c);
 size_t			ft_strlcat(char *dst, char const *src, size_t size);
 size_t			ft_strlcpy(char *dst, char const *src, size_t size);
 size_t			ft_strlen(char const *s);
+size_t			ft_double_strlen(char **str);
 char			*ft_strdup(const char *s);
 char			*ft_strchr(char const *s, int c);
 char			*ft_strrchr(char const *s, int c);
