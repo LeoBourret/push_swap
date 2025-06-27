@@ -35,7 +35,6 @@ This project involves the implementation of two distinct programs:
 ### **3. Extended Functionality (Bonus Part - Achieved)**
 
 *   **File I/O for Instructions:** The `checker` program was extended to **read instructions from a specified input file** and the `push_swap` program was adapted to **write its generated instructions to an output file**.
-*   **Enhanced Debugging & Automation:** This bonus allows for more flexible testing and automation of the sorting process, separating instruction generation from execution.
 
 ## 🛠️ Technologies Used
 
